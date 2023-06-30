@@ -1,2 +1,2 @@
-- 파일명은 [백준](https://acmicpc.net,"Baekjoon Online Judge") 기준 해당 문제 번호입니다.
+- 파일명은 [백준](https://acmicpc.net) 기준 해당 문제 번호입니다.
   - 문제 페이지 : https://acmipc.net/problem/문제_번호
