@@ -7,3 +7,4 @@ for i in range(n):
        ans += sorted_time[j]
 print(ans)
 
+
