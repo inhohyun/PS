@@ -15,5 +15,3 @@ for i in range(n):
 
 print(cnt)
             
-
-# 전근법은 맞았는데? -> 구현력 부족
