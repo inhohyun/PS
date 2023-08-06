@@ -12,17 +12,17 @@ for i in range(1, n+1):
 ch = str(value)
 # print(ch[-1])
 # print(ch[-2])
-def factor(num):
-  if str(num[-1]) != "0":
-      print(num[-1])
+# def factor(num):
+#   if str(num[-1]) != "0":
+#       print(num[-1])
 
-  else:
-      factor(num[:-1])
+#   else:
+#       factor(num[:-1])
       
 
-factor(ch)
+# factor(ch)
 
-# for j in reversed(ch):
-#     if j != "0":
-#         print(j)
-#         break
+for j in reversed(ch):
+    if j != "0":
+        print(j)
+        break
