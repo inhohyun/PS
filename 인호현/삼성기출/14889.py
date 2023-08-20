@@ -19,7 +19,7 @@ def dfs(depth, start):
             visited[i] = True
             dfs(depth+1, i+1)
             visited[i] = False
-
+    
 n = int(input())
 
 visited = [False for _ in range(n)]
