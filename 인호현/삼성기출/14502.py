@@ -4,6 +4,7 @@ import copy
 def bfs():
     q = deque()
     tmp_graph = copy.deepcopy(graph)
+    
     # 2를 전부 퍼뜨리기 위해 2의 위치를 큐에 저장
     for i in range(n):
         for j in range(m):
