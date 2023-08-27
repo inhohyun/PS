@@ -1,54 +1,65 @@
 from collections import deque
-import sys
+import copy
 
-# 다음에 다시 풀어보기
-input = sys.stdin.readline
-
-n, m = map(int, input().split())
-graph = [list(map(int, input().split())) for _ in range(n)]
-temp_graph = [[0] * m for _ in range(n)]
-
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
-
-queue = deque()
-result = 0
 def bfs():
-    while queue:
-        x, y = queue.popleft()
-        for k in range(4):
-            nx = x + dx[k]
-            ny = y + dy[k]
-            
-            if 0 <= nx < n and 0 <= ny < m and temp_graph[nx][ny] == 0:
-                queue.append((nx, ny))
-                temp_graph[nx][ny] = 2
+    q = deque()
+    tmp_graph = copy.deepcopy(graph)
+    # 2를 전부 퍼뜨리기 위해 2의 위치를 큐에 저장
+    for i in range(n):
+        for j in range(m):
+            if tmp_graph[i][j] == 2:
+                q.append((i,j))
+    
+    while q:
+        x,y = q.popleft()
 
-def makewall(cnt):
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if nx < 0 or nx >= n or ny < 0 or ny >= m:
+                continue
+            if tmp_graph[nx][ny] == 0:
+                tmp_graph[nx][ny] = 2
+                q.append((nx,ny))
+
+    # 안전구역 개수
+    global answer
+    cnt = 0
+    for i in range(n):
+        for j in range(m):
+            if tmp_graph[i][j] == 0:
+                cnt += 1
+    
+    answer = max(answer, cnt)
+
+
+
+def makWall(cnt):
     if cnt == 3:
-        for i in range(n):
-            for j in range(m):
-                temp_graph[i][j] = graph[i][j]
-                if temp_graph[i][j] == 2:
-                    queue.append((i, j))
         bfs()
-
-        area = 0
-        global result
-        
-        for i in range(n):
-            area += temp_graph[i].count(0)
-        
-        result = max(result, area)
         return
-            
+    
     for i in range(n):
         for j in range(m):
             if graph[i][j] == 0:
                 graph[i][j] = 1
-                makewall(cnt+1)
+                makWall(cnt+1)
                 graph[i][j] = 0
-            
 
-makewall(0)
-print(result)
+
+n, m = map(int, input().split())
+
+graph = []
+
+dx = [0,0,1,-1]
+dy = [1,-1,0,0]
+
+for _ in range(n):
+    graph.append(list(map(int, input().split())))
+
+answer = 0
+makWall(0)
+print(answer)
+
+
